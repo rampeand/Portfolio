@@ -19,17 +19,17 @@ var name,email,phone,message;
     message = req.body.message;
 
     let transporter = nodeMailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
+        host: process.env.MAIL_HOST,
+        port: process.env.MAIL_PORT,
         secure: true,
         auth: {
-            user: 'andre.raden@gmail.com',
-            pass: 'rhcljbuhbkxreebs'
+            user: process.env.MAIL_USERNAME,
+            pass: process.env.MAIL_PASSWORD
         }
     });
     let mailOptions = {
-        from: '"WebForm" <smoeone@gmail.com>', // sender address
-        to: 'andre.raden+webform@gmail.com',//,req.body.to, // list of receivers
+        from: '"WebForm" <someone@gmail.com>', // sender address
+        to: process.env.MAIL_TO_ADDRESS,//,req.body.to, // list of receivers
         subject: 'Contact Me WebForm',//req.body.subject, // Subject line
         //text: req.body.body, // plain text body
         html: '<b>Name: </b>'+ name + '<br><b>Email:</b> '+ email + '<br><b>Phone#: </b>' + phone + '<br><b>Message: </b>' + message // html body
