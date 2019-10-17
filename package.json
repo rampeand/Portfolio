@@ -1,10 +1,10 @@
 {
   "name": "portfolio",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sample portfolio site to test CI/CD",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Andre Rampersad",
   "license": "ISC",
@@ -13,5 +13,10 @@
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "nodemailer": "^6.3.0"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.1",
+    "should": "^13.2.3",
+    "supertest": "^4.0.2"
   }
 }
