@@ -1,3 +1,4 @@
+app = require('../app');
 var supertest = require("supertest");
 var should = require("should");
 
@@ -22,5 +23,4 @@ describe("Index render test",function(){
       done();
     });
   });
-
 });
