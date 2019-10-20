@@ -44,7 +44,7 @@ pipeline {
             }
             steps{
                 withCredentials([file(credentialsId: '54026027-505e-4cef-a768-27ef8abff427'	, variable: 'PORTFOLIO_ENV')]) {
-                    sh 'rm .env'
+                    sh 'rm .env -f'
                     sh 'cat $PORTFOLIO_ENV >> .env'
                 }
             }
