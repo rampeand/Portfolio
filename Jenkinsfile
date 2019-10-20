@@ -69,6 +69,7 @@ pipeline {
             }
             steps{
                 sh 'docker build -t portfolio_image .'
+                sh 'rm .env -f'
                 sh 'docker run --name portfolio -d -p 80:80 portfolio_image'
             }
         }
