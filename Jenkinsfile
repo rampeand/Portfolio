@@ -12,9 +12,23 @@ pipeline {
                  label 'master'
             }
             steps {
-                sh 'docker stop portfolio'
-                sh 'docker rm portfolio'
-                sh 'docker rmi portfolio_image'
+                script{
+                     try{
+                        sh 'docker stop portfolio'
+                    }catch (err) {
+
+                    }
+                    try{
+                        sh 'docker rm portfolio'
+                    }catch (err) {
+
+                    }
+                    try{
+                        sh 'docker rmi portfolio_image'
+                    }catch (err) {
+
+                    }
+                }
             }
         }
         stage('Create container and run tests') {
@@ -56,31 +70,6 @@ pipeline {
             steps{
                 sh 'docker build -t portfolio_image .'
                 sh 'docker run --name portfolio -d -p 80:80 portfolio_image'
-            }
-        }
-        stage('Building image for registry') {
-            steps{
-                script {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                }
-            }
-        }
-        stage('Deploying image to registry') {
-            steps{
-                script {
-                    docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push()
-                        dockerImage.push('latest')
-                    }
-                }
-            }
-        }
-        stage('Remove unused docker image') {
-            agent {
-                 label 'master'
-             }
-            steps{
-                sh "docker rmi $registry:$BUILD_NUMBER"
             }
         }
     }
