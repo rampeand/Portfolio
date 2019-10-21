@@ -44,11 +44,17 @@ pipeline {
                     args '-p 80:80'
                 }
             }
-
+    
             steps {
                 checkout scm
                 sh 'npm install mocha'
                 sh 'npm test'
+            }
+
+            post {
+                always {
+                    junit allowEmptyResults: true, keepLongStdio: true, testResults: 'test-report.xml'
+                }
             }
         }
 

@@ -4,7 +4,7 @@
   "description": "Sample portfolio site to test CI/CD",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --exit"
+    "test": "mocha --reporter xunit > test-report.xml --exit"
   },
   "author": "Andre Rampersad",
   "license": "ISC",
