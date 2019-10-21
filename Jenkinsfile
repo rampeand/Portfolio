@@ -49,11 +49,11 @@ pipeline {
                 checkout scm
                 sh 'npm install mocha'
                 sh 'npm test'
-                
-                post {
-                    always {
-                        junit allowEmptyResults: true, keepLongStdio: true, testResults: 'test-report.xml'
-                    }
+            }
+
+            post {
+                always {
+                    junit allowEmptyResults: true, keepLongStdio: true, testResults: 'test-report.xml'
                 }
             }
         }
