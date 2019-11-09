@@ -41,7 +41,7 @@ pipeline {
             agent {
                 docker {
                     image 'node:10-alpine'
-                    args '-p 80:80'
+                    args '-p 81:80'
                 }
             }
     
@@ -90,7 +90,7 @@ pipeline {
             steps{
                 sh 'docker build -t portfolio_image .'
                 sh 'rm .env -f'
-                sh 'docker run --name portfolio -d -p 80:80 portfolio_image'
+                sh 'docker run --name portfolio -d -p 81:80 portfolio_image'
             }
         }
         
